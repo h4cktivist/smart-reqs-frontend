@@ -73,6 +73,25 @@
       width: 24px;
       height: 24px;
     }
+
+    button {
+      background-color: #4B5B69;
+      color: white;
+      border: none;
+      padding: 5px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    button:hover {
+      background-color: #3A4856;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -82,31 +101,159 @@
   </div>
 
   <div class="container">
-    <h2>Данные о пользователе</h2>
+    <h2>Профиль</h2>
 
-    <div class="field">
-      <label class="label">Имя пользователя</label>
-      <div class="input-wrapper">
-        <input type="text" class="input" disabled>
-        <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+    <form id="profileForm">
+      <div class="field">
+        <label class="label">Имя пользователя</label>
+        <div class="input-wrapper">
+          <input type="text" class="input" id="username" disabled>
+          <img src="assets/icons/pencil.svg" class="edit-icon" data-field="username" alt="Редактировать">
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Адрес электронной почты</label>
-      <div class="input-wrapper">
-        <input type="email" class="input" disabled>
-        <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+      <div class="field">
+        <label class="label">Адрес электронной почты</label>
+        <div class="input-wrapper">
+          <input type="email" class="input" id="email" disabled>
+          <img src="assets/icons/pencil.svg" class="edit-icon" data-field="email" alt="Редактировать">
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Пароль</label>
-      <div class="input-wrapper">
-        <input type="password" class="input" disabled>
-        <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+      <div class="field">
+        <label class="label">Пароль</label>
+        <div class="input-wrapper">
+          <input type="password" class="input" id="password" value="*******" disabled>
+          <img src="assets/icons/pencil.svg" class="edit-icon" data-field="password" alt="Редактировать">
+        </div>
       </div>
-    </div>
+
+      <div id="newPasswordField" class="field hidden">
+        <label class="label">Новый пароль</label>
+        <div class="input-wrapper">
+          <input type="password" class="input" id="newPassword" placeholder="Введите новый пароль">
+          <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+        </div>
+      </div>
+
+      <button type="submit" id="saveBtn" class="hidden save-button">Сохранить</button>
+    </form>
+
+    <button class="logout-btn">Выйти</button>
   </div>
+
+  <script src="js/login_check.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProfileData();
+
+      document.querySelectorAll('.edit-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+          const field = this.getAttribute('data-field');
+          enableEditing(field);
+        });
+      });
+
+      document.getElementById('profileForm').addEventListener('submit', saveProfile);
+    });
+
+    function loadProfileData() {
+      const token = localStorage.getItem('access_token');
+
+      fetch('http://localhost:8000/api/auth/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+              .then(response => response.json())
+              .then(data => {
+                document.getElementById('username').value = data.username || '';
+                document.getElementById('email').value = data.email || '';
+              })
+              .catch(error => {
+                console.error('Ошибка загрузки профиля:', error);
+              });
+    }
+
+    function enableEditing(field) {
+      const input = document.getElementById(field);
+      const saveBtn = document.getElementById('saveBtn');
+
+      if (field === 'password') {
+        document.getElementById('newPasswordField').classList.remove('hidden');
+        document.getElementById('password').value = '';
+        document.getElementById('password').placeholder = 'Текущий пароль';
+      }
+
+      input.disabled = false;
+      saveBtn.classList.remove('hidden');
+
+      input.focus();
+    }
+
+    function saveProfile(e) {
+      e.preventDefault();
+
+      const token = localStorage.getItem('access_token');
+      const formData = {};
+      const saveBtn = document.getElementById('saveBtn');
+
+      if (!document.getElementById('username').disabled) {
+        formData.username = document.getElementById('username').value;
+      }
+
+      if (!document.getElementById('email').disabled) {
+        formData.email = document.getElementById('email').value;
+      }
+
+      if (!document.getElementById('password').disabled) {
+        formData.current_password = document.getElementById('password').value;
+        formData.new_password = document.getElementById('newPassword').value;
+      }
+
+      console.log(formData);
+
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Сохранение...';
+
+      fetch('http://localhost:8000/api/auth/me', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(formData)
+      })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Ошибка сохранения');
+                }
+                return response.json();
+              })
+              .then(() => {
+                if (formData.email) {
+                  localStorage.removeItem('access_token');
+                  localStorage.removeItem('token_expires');
+                  window.location.href = 'login.html';
+                }
+                window.location.reload();
+              })
+              .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка при сохранении: ' + error.message);
+              })
+              .finally(() => {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'Сохранить';
+              });
+    }
+
+    document.querySelector('.logout-btn').addEventListener('click', function() {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('token_expires');
+      window.location.href = 'login.html';
+    });
+  </script>
 </body>
 </html>

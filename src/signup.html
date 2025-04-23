@@ -11,14 +11,17 @@
   <div class="container">
     <div class="form-box">
       <h2>Регистрация</h2>
-      <form>
-        <input type="text" placeholder="Имя пользователя" required />
-        <input type="email" placeholder="Почта" required />
-        <input type="password" placeholder="Пароль" required />
-        <input type="password" placeholder="Повторите пароль" required />
+      <form id="registerForm">
+        <input type="text" id="username" placeholder="Имя пользователя" required>
+        <input type="email" id="email" placeholder="Почта" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <input type="password" id="confirmPassword" placeholder="Повторите пароль" required>
+
+        <div class="error-message" style="color: red; margin: 10px 0;"></div>
+
         <div class="actions">
           <span>Есть аккаунт? <a href="login.html">Войти</a></span>
-          <button type="submit">Зарегистрироваться</button>
+          <button type="submit" id="registerBtn">Зарегистрироваться</button>
         </div>
       </form>
     </div>
