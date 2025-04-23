@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Данные о пользователе</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #AFC396;
+      color: #4B5B69;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 40px;
+      padding: 40px;
+      width: 500px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .label {
+      margin-bottom: 8px;
+      display: block;
+      font-size: 16px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .input {
+      flex: 1;
+      height: 32px;
+      border-radius: 20px;
+      background-color: #BDC3C7;
+      border: none;
+      padding: 0 12px;
+    }
+
+    .edit-icon {
+      margin-left: 10px;
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+
+    .top-icons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .top-icons img {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-icons">
+    <a href="history.html"><img src="assets/icons/history.svg" alt="icon1"></a>
+    <a href="profile.html"><img src="assets/icons/user.svg" alt="icon2"></a>
+  </div>
+
+  <div class="container">
+    <h2>Данные о пользователе</h2>
+
+    <div class="field">
+      <label class="label">Имя пользователя</label>
+      <div class="input-wrapper">
+        <input type="text" class="input" disabled>
+        <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Адрес электронной почты</label>
+      <div class="input-wrapper">
+        <input type="email" class="input" disabled>
+        <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Пароль</label>
+      <div class="input-wrapper">
+        <input type="password" class="input" disabled>
+        <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

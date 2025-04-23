@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История запросов</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+        body {
+            background-color: #A5BB89;
+            font-family: 'Inter', sans-serif;
+            color: #4B5B69;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            width: 891px;
+            height: 1505px;
+            margin: 0 auto;
+            background-color: #F2F5F0;
+            border-radius: 90px;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .history-title {
+            color: #4B5B69;
+            font-size: 24px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .query-block {
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .label {
+            font-weight: 500;
+            margin-bottom: 10px;
+            width: 720px;
+            text-align: left;
+        }
+
+        .answer-box textarea {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(75, 91, 105, 0.3);
+            border: none;
+            border-radius: 40px;
+            padding: 20px;
+            resize: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #4B5B69;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        .answer-box textarea:focus {
+            outline: none;
+        }
+
+        .answer-box {
+            width: 720px;
+            height: 237px;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .top-icons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .top-icons img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-icons">
+        <a href="history.html"><img src="assets/icons/history.svg" alt="icon1"></a>
+        <a href="profile.html"><img src="assets/icons/user.svg" alt="icon2"></a>
+    </div>
+
+    <div class="container">
+        <div class="history-title">История запросов</div>
+
+        <div class="query-block">
+            <div class="label">Запрос пользователя</div>
+            <div class="answer-box"><textarea placeholder disabled></textarea></div>
+            <div class="label">Ответ системы</div>
+            <div class="answer-box"><textarea placeholder disabled></textarea></div>
+        </div>
+    </div>
+</body>
+</html>

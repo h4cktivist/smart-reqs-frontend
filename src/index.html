@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о проекте</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #A5BB89;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .top-icons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .top-icons img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .form-container {
+            background-color: #F2F5F0;
+            border-radius: 90px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #4B5B69;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #4B5B69;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .radio-group {
+            margin: 15px 0;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            accent-color: #4B5B69;
+        }
+        
+        label {
+            color: #4B5B69;
+            font-size: 16px;
+        }
+        
+        .submit-btn {
+            background-color: #4B5B69;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 30px;
+            display: block;
+            width: 200px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #3A4856;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .details-button {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .details-button:hover {
+            background: #e0e0e0;
+        }
+
+        .radio-group {
+            margin-bottom: 20px;
+        }
+
+        .radio-option {
+            margin: 8px 0;
+        }
+
+        .top-icons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .top-icons a img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-icons">
+        <a href="history.html"><img src="assets/icons/history.svg" alt="icon1"></a>
+        <a href="profile.html"><img src="assets/icons/user.svg" alt="icon2"></a>
+    </div>
+
+    <div class="form-container">
+        <h1>Информация о проекте</h1>
+        <div class="form-group">
+            <label for="project-description">Описание проекта</label>
+            <textarea id="project-description" class="form-textarea" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="requirements">Описание функциональных требований</label>
+            <textarea id="requirements" class="form-textarea" rows="4"></textarea>
+        </div>
+
+        <button id="toggle-details" class="details-button">Подробнее ▼</button>
+
+        <div id="additional-fields" class="hidden">
+            <h2>Вид проекта</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="app-type1" name="app-type">
+                    <label for="app-type1">Веб-приложение</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="app-type2" name="app-type">
+                    <label for="app-type2">Десктопное приложение</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="app-type3" name="app-type">
+                    <label for="app-type3">Мобильное приложение</label>
+                </div>
+            </div>
+
+            <h2>Планируется ли хранить данные?</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="store-data1" name="store-data">
+                    <label for="store-data1">Да</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="store-data2" name="store-data">
+                    <label for="store-data2">Нет</label>
+                </div>
+            </div>
+
+            <h2>Будет ли система работать с большими данными?</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="big-data1" name="big-data">
+                    <label for="big-data1">Да</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="big-data2" name="big-data">
+                    <label for="big-data2">Нет</label>
+                </div>
+            </div>
+
+            <h2>Структура данных</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="data-struct1" name="data-struct">
+                    <label for="data-struct1">Табличная (SQL)</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="data-struct2" name="data-struct">
+                    <label for="data-struct2">Не табличная (NoSQL)</label>
+                </div>
+            </div>
+
+            <h2>Будет ли проводиться анализ данных?</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="data-analysis1" name="data-analysis">
+                    <label for="data-analysis1">Да</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="data-analysis2" name="data-analysis">
+                    <label for="data-analysis2">Нет</label>
+                </div>
+            </div>
+
+            <h2>Планируется ли использовать машинное обучение?</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="ml1" name="ml">
+                    <label for="ml1">Да</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="ml2" name="ml">
+                    <label for="ml2">Нет</label>
+                </div>
+            </div>
+
+            <h2>Предпочтения по языкам программирования</h2>
+            <textarea id="languages" class="form-textarea" rows="2"></textarea>
+
+            <h2>Технологии должны быть</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="tech-type1" name="tech-type">
+                    <label for="tech-type1">Open source</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="tech-type2" name="tech-type">
+                    <label for="tech-type2">Проприетарные</label>
+                </div>
+            </div>
+
+            <h2>Планируется ли масштабирование проекта в будущем?</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="scaling1" name="scaling">
+                    <label for="scaling1">Да</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="scaling2" name="scaling">
+                    <label for="scaling2">Нет</label>
+                </div>
+            </div>
+
+            <h2>Планируется ли автоматическое тестирование проекта?</h2>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="testing1" name="testing">
+                    <label for="testing1">Да</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="testing2" name="testing">
+                    <label for="testing2">Нет</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Отправить</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggle-details');
+            const additionalFields = document.getElementById('additional-fields');
+
+            toggleButton.addEventListener('click', function() {
+                if (additionalFields.classList.contains('hidden')) {
+                    additionalFields.classList.remove('hidden');
+                    toggleButton.textContent = 'Скрыть ▲';
+                } else {
+                    additionalFields.classList.add('hidden');
+                    toggleButton.textContent = 'Подробнее ▼';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
