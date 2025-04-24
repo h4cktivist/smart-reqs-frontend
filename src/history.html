@@ -102,11 +102,6 @@
             const token = localStorage.getItem('access_token');
             const historyContainer = document.getElementById('historyContainer');
 
-            if (!token) {
-                window.location.href = 'login.html';
-                return;
-            }
-
             fetch('http://localhost:8000/api/recommender/history', {
                 method: 'GET',
                 headers: {
