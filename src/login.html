@@ -142,11 +142,9 @@
                     throw new Error(data.message || 'Ошибка авторизации');
                 }
 
-                // Сохраняем токен и время истечения
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('token_expires', Date.now() + data.expires_in * 60000);
 
-                // Перенаправляем на профиль
                 window.location.href = 'profile.html';
 
             } catch (error) {

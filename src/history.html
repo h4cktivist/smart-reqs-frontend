@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>История запросов</title>
+    <script src="js/login_check.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
@@ -17,12 +18,16 @@
 
         .container {
             width: 891px;
-            height: 1505px;
+            min-height: 1505px;
             margin: 0 auto;
             background-color: #F2F5F0;
             border-radius: 90px;
             padding: 30px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
         }
 
         .history-title {
@@ -31,13 +36,6 @@
             font-weight: 500;
             text-align: center;
             margin-bottom: 40px;
-        }
-
-        .query-block {
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .label {
@@ -96,13 +94,70 @@
 
     <div class="container">
         <div class="history-title">История запросов</div>
-
-        <div class="query-block">
-            <div class="label">Запрос пользователя</div>
-            <div class="answer-box"><textarea placeholder disabled></textarea></div>
-            <div class="label">Ответ системы</div>
-            <div class="answer-box"><textarea placeholder disabled></textarea></div>
-        </div>
+        <div id="historyContainer"></div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('access_token');
+            const historyContainer = document.getElementById('historyContainer');
+
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            fetch('http://localhost:8000/api/recommender/history', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка загрузки истории');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.length === 0) {
+                        historyContainer.innerHTML = '<div class="empty-history">История запросов пуста</div>';
+                        return;
+                    }
+
+                    data.forEach(item => {
+                        const queryBlock = document.createElement('div');
+                        queryBlock.className = 'query-block';
+
+                        const requestContent = `Название: ${item.request.title || 'Не указано'}\n\n` +
+                            `Описание идеи: ${item.request.idea_description || 'Не указано'}\n\n` +
+                            `Функциональные требования: ${item.request.functional_reqs || 'Не указано'}\n\n` +
+                            `Тип продукта: ${item.request.product_type || 'Не указано'}`;
+
+                        let resultContent = '';
+                        if (item.result) {
+                            resultContent += `Фреймворки: ${item.result.frameworks?.join(', ') || 'Не предложены'}\n\n` +
+                                `Библиотеки: ${item.result.libraries?.join(', ') || 'Не предложены'}\n\n` +
+                                `СУБД: ${item.result.databases?.join(', ') || 'Не предложены'}`;
+                        } else {
+                            resultContent = 'Подходящих технологий не нашлось';
+                        }
+
+                        queryBlock.innerHTML = `
+                <div class="label">Запрос пользователя</div>
+                <div class="answer-box"><textarea readonly>${requestContent}</textarea></div>
+                <div class="label">Ответ системы</div>
+                <div class="answer-box"><textarea readonly>${resultContent}</textarea></div>
+            `;
+
+                        historyContainer.appendChild(queryBlock);
+                    });
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    historyContainer.innerHTML = `<div class="error">Ошибка загрузки истории: ${error.message}</div>`;
+                });
+        });
+    </script>
 </body>
 </html>
