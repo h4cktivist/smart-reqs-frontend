@@ -142,51 +142,100 @@
 </head>
 <body>
     <div class="library-card">
-        <div class="card-title">Информация о библиотеке</div>
-        
-        <div class="section-title">Название</div>
-        <input type="text" class="input-field" placeholder=>
-        
-        <div class="section-title">Тип библиотеки</div>
-        <div class="options-container">
-            <div class="radio-item">
-                <input type="radio" id="data-processing" name="library-type">
-                <label for="data-processing">обработка данных</label>
+        <form>
+            <div class="card-title">Информация о библиотеке</div>
+
+            <div class="section-title">Название</div>
+            <input type="text" class="input-field" name="name" required>
+
+            <div class="section-title">Тип библиотеки</div>
+            <div class="options-container">
+                <div class="radio-item">
+                    <input type="radio" id="data-processing" name="library-type" value="обработка данных" required>
+                    <label for="data-processing">обработка данных</label>
+                </div>
+
+                <div class="radio-item">
+                    <input type="radio" id="machine-learning" name="library-type" value="машинное обучение">
+                    <label for="machine-learning">машинное обучение</label>
+                </div>
+
+                <div class="radio-item">
+                    <input type="radio" id="testing" name="library-type" value="тестирование">
+                    <label for="testing">тестирование</label>
+                </div>
+
+                <div class="radio-item">
+                    <input type="radio" id="math" name="library-type" value="математические вычисления">
+                    <label for="math">математические вычисления</label>
+                </div>
             </div>
-            
-            <div class="radio-item">
-                <input type="radio" id="machine-learning" name="library-type">
-                <label for="machine-learning">машинное обучение</label>
+
+            <div class="section-title">Лицензия</div>
+            <div class="options-container">
+                <div class="radio-item">
+                    <input type="radio" id="open" name="license" value="открытая" required>
+                    <label for="open">открытая</label>
+                </div>
+
+                <div class="radio-item">
+                    <input type="radio" id="commercial" name="license" value="коммерческая">
+                    <label for="commercial">коммерческая</label>
+                </div>
             </div>
-            
-            <div class="radio-item">
-                <input type="radio" id="testing" name="library-type">
-                <label for="testing">тестирование</label>
-            </div>
-            
-            <div class="radio-item">
-                <input type="radio" id="math" name="library-type">
-                <label for="math">математические вычисления</label>
-            </div>
-        </div>
-        
-        <div class="section-title">Лицензия</div>
-        <div class="options-container">
-            <div class="radio-item">
-                <input type="radio" id="open" name="license">
-                <label for="open">открытая</label>
-            </div>
-            
-            <div class="radio-item">
-                <input type="radio" id="commercial" name="license">
-                <label for="commercial">коммерческая</label>
-            </div>
-        </div>
-        
-        <div class="section-title">Язык программирования</div>
-        <input type="text" class="input-field" placeholder=>
-        
-        <button class="submit-button">Отправить</button>
+
+            <div class="section-title">Язык программирования</div>
+            <input type="text" class="input-field" required>
+
+            <button class="submit-button" type="submit">Отправить</button>
+        </form>
     </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
+            const name = document.querySelector('input[type="text"]').value;
+            const language = document.querySelectorAll('input[type="text"]')[1].value;
+            const purpose = document.querySelector('input[name="library-type"]:checked')?.value;
+            const licence_type = document.querySelector('input[name="license"]:checked')?.value;
+
+            const formData = {
+                name: name,
+                language: language,
+                purpose: purpose,
+                licence_type: licence_type
+            };
+
+            const token = localStorage.getItem('access_token');
+            try {
+                const response = await fetch('http://localhost:8000/api/libraries', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Ошибка при добавлении');
+                }
+
+                alert('Библиотека успешно добавлена!');
+                window.location.href = 'add_select.html';
+
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert(error.message);
+            }
+        });
+    </script>
 </body>
 </html>

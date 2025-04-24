@@ -152,7 +152,7 @@
     </style>
 </head>
 <body>
-    <div class="top-icons">
+    <div class="top-icons" id="top-icons">
         <a href="history.html"><img src="assets/icons/history.svg" alt="icon1"></a>
         <a href="profile.html"><img src="assets/icons/user.svg" alt="icon2"></a>
     </div>
@@ -305,6 +305,17 @@
                     toggleButton.textContent = 'Подробнее ▼';
                 }
             });
+
+            const is_expert = localStorage.getItem('is_expert');
+            const icons = document.getElementById('top-icons');
+            if (is_expert === 'true') {
+                const link = document.createElement('a');
+                link.href = 'add_select.html';
+                const img = document.createElement('img');
+                img.src = 'assets/icons/icons8-expert-100.png';
+                link.appendChild(img);
+                icons.appendChild(link);
+            }
         });
     </script>
 </body>

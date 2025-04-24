@@ -86,49 +86,100 @@
     <form>
       <div class="field">
         <label>Название</label><br>
-        <input type="text" class="input">
+        <input type="text" class="input" required>
       </div>
 
       <div class="field">
         <label>Для разработки чего применяется</label>
         <div class="radio-group">
-          <div><input type="radio" name="purpose"> веб-приложение</div>
-          <div><input type="radio" name="purpose"> десктопное приложение</div>
-          <div><input type="radio" name="purpose"> мобильное приложение</div>
+          <div><input type="radio" name="purpose" value="веб-приложение" required>веб-приложение</div>
+          <div><input type="radio" name="purpose" value="десктопное приложение">десктопное приложение</div>
+          <div><input type="radio" name="purpose" value="мобильное приложение">мобильное приложение</div>
         </div>
       </div>
 
       <div class="field">
         <label>Лицензия</label>
         <div class="radio-group">
-          <div><input type="radio" name="license"> открытая</div>
-          <div><input type="radio" name="license"> коммерческая</div>
+          <div><input type="radio" name="license" value="открытая" required>открытая</div>
+          <div><input type="radio" name="license" value="коммерческая">коммерческая</div>
         </div>
       </div>
 
       <div class="field">
         <label>Язык программирования</label><br>
-        <input type="text" class="input">
+        <input type="text" class="input" required>
       </div>
 
       <div class="field">
         <label>Способность к масштабированию</label>
         <div class="radio-group">
-          <div><input type="radio" name="scalable"> да</div>
-          <div><input type="radio" name="scalable"> нет</div>
+          <div><input type="radio" name="scalable" value="да" required>да</div>
+          <div><input type="radio" name="scalable" value="нет">нет</div>
         </div>
       </div>
 
       <div class="field">
         <label>Возможность интеграции с базой данных</label>
         <div class="radio-group">
-          <div><input type="radio" name="db-integration"> да</div>
-          <div><input type="radio" name="db-integration"> нет</div>
+          <div><input type="radio" name="db-integration" value="да" required>да</div>
+          <div><input type="radio" name="db-integration" value="нет">нет</div>
         </div>
       </div>
 
       <button type="submit">Отправить</button>
     </form>
   </div>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправка...';
+
+      const name = document.querySelector('input[type="text"]').value;
+      const language = document.querySelectorAll('input[type="text"]')[1].value;
+      const purpose = document.querySelector('input[name="purpose"]:checked')?.value;
+      const licence_type = document.querySelector('input[name="license"]:checked')?.value;
+      const scaling_poss = document.querySelector('input[name="scalable"]:checked')?.value === 'да';
+      const db_integration = document.querySelector('input[name="db-integration"]:checked')?.value === 'да';
+
+      const formData = {
+        name: name,
+        language: language,
+        purpose: purpose,
+        scaling_poss: scaling_poss,
+        db_integration: db_integration,
+        licence_type: licence_type
+      };
+
+      const token = localStorage.getItem('access_token');
+      try {
+        const response = await fetch('http://localhost:8000/api/frameworks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || 'Ошибка при добавлении фреймворка');
+        }
+
+        alert('Фреймворк успешно добавлен!');
+        window.location.href = 'add_select.html';
+
+      } catch (error) {
+        console.error('Ошибка:', error);
+        alert(error.message);
+      }
+    });
+  </script>
 </body>
 </html>
