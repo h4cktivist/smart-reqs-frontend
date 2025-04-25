@@ -3,93 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css"/>
     <title>Вход</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #A5BB89; /* Зелёный фон */
-        }
-        
-        .auth-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        
-        h1 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #4B5B69; /* Цвет текста */
-        }
-        
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #4B5B69; /* Цвет текста */
-        }
-        
-        input {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 2px solid #4B5B69; /* Цвет рамки полей */
-            border-radius: 0; /* Прямоугольные поля */
-            font-size: 16px;
-            color: #4B5B69; /* Цвет текста в полях */
-        }
-        
-        input:focus {
-            border-color: #A5BB89; /* Зелёная рамка при фокусе */
-            outline: none;
-        }
-        
-        .links {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #4B5B69; /* Цвет текста */
-        }
-        
-        .login-btn {
-            background-color: #4B5B69; /* Цвет кнопки */
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 0; /* Прямоугольная кнопка */
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        
-        .login-btn:hover {
-            background-color: #3A4856; /* Темнее при наведении */
-        }
-        
-        a {
-            color: #4B5B69; /* Цвет ссылки */
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
     <div class="auth-container">
@@ -113,57 +28,6 @@
         </div>
     </div>
 
-    <script>
-        document.querySelector('.login-btn').addEventListener('click', async function() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorElement = document.querySelector('.error-message');
-
-            if (!email || !password) {
-                errorElement.textContent = 'Пожалуйста, заполните все поля';
-                return;
-            }
-
-            try {
-                const response = await fetch('http://localhost:8000/api/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.message || 'Ошибка авторизации');
-                }
-
-                localStorage.setItem('access_token', data.access_token);
-                localStorage.setItem('token_expires', Date.now() + data.expires_in * 60000);
-                fetch('http://localhost:8000/api/auth/me', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${data.access_token}`
-                    }
-                })
-                    .then(res => res.json())
-                    .then(user_data => {
-                        localStorage.setItem('is_expert', user_data.is_expert);
-                        window.location.href = 'index.html';
-                    })
-                    .catch(error => {
-                        console.error('Ошибка:', error);
-                    });
-
-            } catch (error) {
-                errorElement.textContent = error.message;
-                console.error('Login error:', error);
-            }
-        });
-    </script>
+    <script src="js/login.js"></script>
 </body>
 </html>

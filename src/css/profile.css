@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #AFC396;
+    color: #4B5B69;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    background-color: white;
+    border-radius: 40px;
+    padding: 40px;
+    width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.label {
+    margin-bottom: 8px;
+    display: block;
+    font-size: 16px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    flex: 1;
+    height: 32px;
+    border-radius: 20px;
+    background-color: #BDC3C7;
+    border: none;
+    padding: 0 12px;
+}
+
+.edit-icon {
+    margin-left: 10px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.top-icons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.top-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+button {
+    background-color: #4B5B69;
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #3A4856;
+}
+
+.hidden {
+    display: none;
+}
+
+.home-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.home-logo img {
+    width: 150px;
+    height: auto;
+}
