@@ -88,3 +88,22 @@ body {
     width: 150px;
     height: auto;
 }
+
+.query-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.delete-btn {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #af0101;
+}
