@@ -170,7 +170,6 @@
               .then(data => {
                 document.getElementById('username').value = data.username || '';
                 document.getElementById('email').value = data.email || '';
-                localStorage.setItem('is_expert', data.is_expert);
               })
               .catch(error => {
                 console.error('Ошибка загрузки профиля:', error);

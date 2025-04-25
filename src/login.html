@@ -144,8 +144,20 @@
 
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('token_expires', Date.now() + data.expires_in * 60000);
-
-                window.location.href = 'profile.html';
+                fetch('http://localhost:8000/api/auth/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${data.access_token}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(user_data => {
+                        localStorage.setItem('is_expert', user_data.is_expert);
+                        window.location.href = 'index.html';
+                    })
+                    .catch(error => {
+                        console.error('Ошибка:', error);
+                    });
 
             } catch (error) {
                 errorElement.textContent = error.message;

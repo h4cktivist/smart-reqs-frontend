@@ -17,14 +17,39 @@
     <div class="form-box">
       <h2>Технологии проекта</h2>
 
-      <label for="project-description">Список подходящих для реализации проекта 
-        технологий по категориям</label>
-      <textarea id="project-description"></textarea>
+      <label for="tech-recommendations">Список подходящих для реализации проекта технологий</label>
+      <textarea id="tech-recommendations" readonly></textarea>
 
       <div class="form-footer single">
-        <a href="#" class="expand-link">История запросов</a>
+        <a href="index.html" class="expand-link">На главную</a>
+        <a href="history.html" class="expand-link">История запросов</a>
       </div>
     </div>
-  </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultTextarea = document.getElementById('tech-recommendations');
+            const result = JSON.parse(sessionStorage.getItem('recommendation_result'));
+
+            if (!result) {
+                resultTextarea.value = 'Нет данных о рекомендациях. Пожалуйста, заполните форму заново.';
+                return;
+            }
+
+            let formattedResult = '';
+            if (result.frameworks && result.frameworks.length > 0) {
+                formattedResult += `Фреймворки:\n${result.frameworks.join('\n')}\n\n`;
+            }
+            if (result.libraries && result.libraries.length > 0) {
+                formattedResult += `Библиотеки:\n${result.libraries.join('\n')}\n\n`;
+            }
+            if (result.databases && result.databases.length > 0) {
+                formattedResult += `Базы данных:\n${result.databases.join('\n')}\n\n`;
+            }
+
+            resultTextarea.value = formattedResult || 'Подходящих технологий не найдено.';
+            sessionStorage.removeItem('recommendation_result');
+        });
+    </script>
 </body>
 </html>

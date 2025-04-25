@@ -160,13 +160,18 @@
     <div class="form-container">
         <h1>Информация о проекте</h1>
         <div class="form-group">
+            <label for="title">Название проекта</label>
+            <textarea id="title" class="form-textarea" rows="1"></textarea>
+        </div>
+
+        <div class="form-group">
             <label for="project-description">Описание проекта</label>
-            <textarea id="project-description" class="form-textarea" rows="4"></textarea>
+            <textarea id="project-description" class="form-textarea" rows="4" required></textarea>
         </div>
 
         <div class="form-group">
             <label for="requirements">Описание функциональных требований</label>
-            <textarea id="requirements" class="form-textarea" rows="4"></textarea>
+            <textarea id="requirements" class="form-textarea" rows="4" required></textarea>
         </div>
 
         <button id="toggle-details" class="details-button">Подробнее ▼</button>
@@ -175,15 +180,15 @@
             <h2>Вид проекта</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="app-type1" name="app-type">
+                    <input type="radio" id="app-type1" name="app-type" value="веб-приложение">
                     <label for="app-type1">Веб-приложение</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="app-type2" name="app-type">
+                    <input type="radio" id="app-type2" name="app-type" value="десктопное приложение">
                     <label for="app-type2">Десктопное приложение</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="app-type3" name="app-type">
+                    <input type="radio" id="app-type3" name="app-type" value="мобильное приложение">
                     <label for="app-type3">Мобильное приложение</label>
                 </div>
             </div>
@@ -191,11 +196,11 @@
             <h2>Планируется ли хранить данные?</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="store-data1" name="store-data">
+                    <input type="radio" id="store-data1" name="store-data" value="Да">
                     <label for="store-data1">Да</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="store-data2" name="store-data">
+                    <input type="radio" id="store-data2" name="store-data" value="Нет">
                     <label for="store-data2">Нет</label>
                 </div>
             </div>
@@ -203,11 +208,11 @@
             <h2>Будет ли система работать с большими данными?</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="big-data1" name="big-data">
+                    <input type="radio" id="big-data1" name="big-data" value="Да">
                     <label for="big-data1">Да</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="big-data2" name="big-data">
+                    <input type="radio" id="big-data2" name="big-data" value="Нет">
                     <label for="big-data2">Нет</label>
                 </div>
             </div>
@@ -215,11 +220,11 @@
             <h2>Структура данных</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="data-struct1" name="data-struct">
+                    <input type="radio" id="data-struct1" name="data-struct" value="SQL">
                     <label for="data-struct1">Табличная (SQL)</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="data-struct2" name="data-struct">
+                    <input type="radio" id="data-struct2" name="data-struct" value="NoSQL">
                     <label for="data-struct2">Не табличная (NoSQL)</label>
                 </div>
             </div>
@@ -227,11 +232,11 @@
             <h2>Будет ли проводиться анализ данных?</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="data-analysis1" name="data-analysis">
+                    <input type="radio" id="data-analysis1" name="data-analysis" value="Да">
                     <label for="data-analysis1">Да</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="data-analysis2" name="data-analysis">
+                    <input type="radio" id="data-analysis2" name="data-analysis" value="Нет">
                     <label for="data-analysis2">Нет</label>
                 </div>
             </div>
@@ -239,26 +244,27 @@
             <h2>Планируется ли использовать машинное обучение?</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="ml1" name="ml">
+                    <input type="radio" id="ml1" name="ml" value="Да">
                     <label for="ml1">Да</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="ml2" name="ml">
+                    <input type="radio" id="ml2" name="ml" value="Нет">
                     <label for="ml2">Нет</label>
                 </div>
             </div>
 
             <h2>Предпочтения по языкам программирования</h2>
-            <textarea id="languages" class="form-textarea" rows="2"></textarea>
+            <textarea id="languages" class="form-textarea" rows="2"
+                      placeholder="Перечислите языки через запятую. Напр.: Python, JavaScript"></textarea>
 
             <h2>Технологии должны быть</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="tech-type1" name="tech-type">
+                    <input type="radio" id="tech-type1" name="tech-type" value="открытая">
                     <label for="tech-type1">Open source</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="tech-type2" name="tech-type">
+                    <input type="radio" id="tech-type2" name="tech-type" value="коммерческая">
                     <label for="tech-type2">Проприетарные</label>
                 </div>
             </div>
@@ -266,11 +272,11 @@
             <h2>Планируется ли масштабирование проекта в будущем?</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="scaling1" name="scaling">
+                    <input type="radio" id="scaling1" name="scaling" value="Да">
                     <label for="scaling1">Да</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="scaling2" name="scaling">
+                    <input type="radio" id="scaling2" name="scaling" value="Нет">
                     <label for="scaling2">Нет</label>
                 </div>
             </div>
@@ -278,11 +284,11 @@
             <h2>Планируется ли автоматическое тестирование проекта?</h2>
             <div class="radio-group">
                 <div class="radio-option">
-                    <input type="radio" id="testing1" name="testing">
+                    <input type="radio" id="testing1" name="testing" value="Да">
                     <label for="testing1">Да</label>
                 </div>
                 <div class="radio-option">
-                    <input type="radio" id="testing2" name="testing">
+                    <input type="radio" id="testing2" name="testing" value="Нет">
                     <label for="testing2">Нет</label>
                 </div>
             </div>
@@ -315,6 +321,86 @@
                 img.src = 'assets/icons/icons8-expert-100.png';
                 link.appendChild(img);
                 icons.appendChild(link);
+            }
+        });
+
+        document.querySelector('.submit-btn').addEventListener('click', async function() {
+            const submitBtn = this;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Загрузка...';
+
+            try {
+                const formData = {};
+
+                formData.title = document.getElementById('title').value;
+                formData.idea_description = document.getElementById('project-description').value;
+                formData.functional_reqs = document.getElementById('requirements').value;
+
+                if (!formData.title || !formData.idea_description || !formData.functional_reqs) {
+                    throw new Error('Заполните обязательные поля: Название проекта, Описание проекта и Функциональные требования');
+                }
+
+                const appType = document.querySelector('input[name="app-type"]:checked')?.value;
+                if (appType) formData.product_type = appType;
+
+                const storeData = document.querySelector('input[name="store-data"]:checked')?.value;
+                if (storeData !== undefined) formData.db_needed = storeData === 'Да';
+
+                const bigData = document.querySelector('input[name="big-data"]:checked')?.value;
+                if (bigData !== undefined) formData.big_data_needed = bigData === 'Да';
+
+                const dataStruct = document.querySelector('input[name="data-struct"]:checked')?.value;
+                if (dataStruct) formData.data_structure = dataStruct;
+
+                const dataAnalysis = document.querySelector('input[name="data-analysis"]:checked')?.value;
+                if (dataAnalysis !== undefined) formData.data_analysis_needed = dataAnalysis === 'Да';
+
+                const ml = document.querySelector('input[name="ml"]:checked')?.value;
+                if (ml !== undefined) formData.ml_needed = ml === 'Да';
+
+                const languages = document.getElementById('languages').value;
+                if (languages) {
+                    formData.languages_preferences = languages.split(',').map(item => item.trim());
+                }
+
+                const techType = document.querySelector('input[name="tech-type"]:checked')?.value;
+                if (techType) formData.licensing_type = techType;
+
+                const scaling = document.querySelector('input[name="scaling"]:checked')?.value;
+                if (scaling !== undefined) formData.scaling_needed = scaling === 'Да';
+
+                const testing = document.querySelector('input[name="testing"]:checked')?.value;
+                if (testing !== undefined) formData.autotesting_needed = testing === 'Да';
+
+                const token = localStorage.getItem('access_token');
+
+                const response = await fetch('http://localhost:8000/api/recommender', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.status === 400) {
+                    throw new Error('Ваш запрос не соответствует ИТ-тематике');
+                }
+                else if (!response.ok) {
+                    throw new Error(result.message || 'Ошибка сервера');
+                }
+
+                sessionStorage.setItem('recommendation_result', JSON.stringify(result));
+                window.location.href = 'results.html';
+
+            } catch (error) {
+                alert(error.message);
+                console.error('Ошибка:', error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить';
             }
         });
     </script>
