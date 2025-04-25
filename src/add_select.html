@@ -116,9 +116,26 @@
         .next-button:hover {
             background-color: #94aa78;
         }
+
+        .home-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .home-logo img {
+            width: 150px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
+    <a href="index.html" class="home-logo">
+        <img src="assets/icons/icon.svg" alt="На главную" title="Вернуться на главную">
+    </a>
+
     <div class="tech-card">
         <div class="card-title">Данные о технологии</div>
         

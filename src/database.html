@@ -83,9 +83,26 @@
       cursor: pointer;
       float: right;
     }
+
+    .home-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .home-logo img {
+      width: 150px;
+      height: auto;
+    }
   </style>
 </head>
 <body>
+  <a href="index.html" class="home-logo">
+    <img src="assets/icons/icon.svg" alt="На главную" title="Вернуться на главную">
+  </a>
+
   <div class="top-icons">
     <a href="history.html"><img src="assets/icons/history.svg" alt="icon1"></a>
     <a href="profile.html"><img src="assets/icons/user.svg" alt="icon2"></a>
