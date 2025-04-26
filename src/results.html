@@ -19,9 +19,9 @@
     </div>
 
     <div class="form-box">
-      <h2>Технологии проекта</h2>
+      <h2>Рекомендация</h2>
 
-      <label for="tech-recommendations">Список подходящих для реализации проекта технологий</label>
+      <label for="tech-recommendations">Подходящие технологии и число исполнителей:</label>
       <textarea id="tech-recommendations" readonly></textarea>
 
       <div class="form-footer single">
@@ -42,13 +42,16 @@
 
             let formattedResult = '';
             if (result.frameworks && result.frameworks.length > 0) {
-                formattedResult += `Фреймворки:\n${result.frameworks.join('\n')}\n\n`;
+                formattedResult += `Фреймворки: ${result.frameworks.join(', ')}\n\n`;
             }
             if (result.libraries && result.libraries.length > 0) {
-                formattedResult += `Библиотеки:\n${result.libraries.join('\n')}\n\n`;
+                formattedResult += `Библиотеки: ${result.libraries.join(', ')}\n\n`;
             }
             if (result.databases && result.databases.length > 0) {
-                formattedResult += `Базы данных:\n${result.databases.join('\n')}\n\n`;
+                formattedResult += `Базы данных: ${result.databases.join(', ')}\n\n`;
+            }
+            if (result.min_devs && result.max_devs) {
+                formattedResult += `Количество исполнителей: ${result.min_devs}-${result.max_devs}`;
             }
 
             resultTextarea.value = formattedResult || 'Подходящих технологий не найдено.';

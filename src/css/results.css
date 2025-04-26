@@ -33,6 +33,7 @@
   
   .form-box {
     background-color: #f5f9f4;
+    width: 600px;
     padding: 60px 30px 100px;
     border-radius: 40px;
     position: relative;
@@ -52,7 +53,7 @@
   
   textarea {
     width: 100%;
-    height: 100px;
+    height: 200px;
     resize: none;
     padding: 12px 20px;
     margin-top: 8px;
