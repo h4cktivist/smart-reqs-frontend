@@ -49,14 +49,14 @@ function createHistoryItem(item) {
     if (item.result) {
         resultContent += `Фреймворки: ${item.result.frameworks?.join(', ') || 'Не предложены'}\n\n` +
             `Библиотеки: ${item.result.libraries?.join(', ') || 'Не предложены'}\n\n` +
-            `СУБД: ${item.result.databases?.join(', ') || 'Не предложены'}`;
+            `СУБД: ${item.result.databases?.join(', ') || 'Не предложены'}\n\n` +
+            `Количество исполнителей: ${item.result.min_devs}-${item.result.max_devs}`;
     } else {
         resultContent = 'Подходящих технологий не нашлось';
     }
 
-    // Создание HTML структуры
     queryBlock.innerHTML = `
-        <div class="label">Запрос пользователя</div>
+        <div class="label">Запрос пользователя (${item.request.datetime.replace('T', ' ').substring(0, 16)})</div>
         <div class="answer-box"><textarea readonly>${requestContent}</textarea></div>
         <div class="label">Ответ системы</div>
         <div class="answer-box"><textarea readonly>${resultContent}</textarea></div>
