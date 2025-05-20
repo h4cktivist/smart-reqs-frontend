@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadProfileData() {
     const token = localStorage.getItem('access_token');
 
-    fetch('http://localhost:8000/api/auth/me', {
+    fetch('https://smart-reqs-backend-latest.onrender.com/api/auth/me', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -82,7 +82,7 @@ function saveProfile(e) {
     saveBtn.disabled = true;
     saveBtn.textContent = 'Сохранение...';
 
-    fetch('http://localhost:8000/api/auth/me', {
+    fetch('https://smart-reqs-backend-latest.onrender.com/api/auth/me', {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

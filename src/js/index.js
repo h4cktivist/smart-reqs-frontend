@@ -74,7 +74,7 @@ document.querySelector('.submit-btn').addEventListener('click', async function()
 
         const token = localStorage.getItem('access_token');
 
-        const response = await fetch('http://localhost:8000/api/recommender', {
+        const response = await fetch('https://smart-reqs-backend-latest.onrender.com/api/recommender', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

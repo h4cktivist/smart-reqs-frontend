@@ -23,7 +23,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 
     const token = localStorage.getItem('access_token');
     try {
-        const response = await fetch('http://localhost:8000/api/databases', {
+        const response = await fetch('https://smart-reqs-backend-latest.onrender.com/api/databases', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

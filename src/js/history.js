@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const historyContainer = document.getElementById('historyContainer');
 
     try {
-        const response = await fetch('http://localhost:8000/api/recommender/history', {
+        const response = await fetch('https://smart-reqs-backend-latest.onrender.com/api/recommender/history', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -85,7 +85,7 @@ function setupDeleteButtons() {
             try {
                 const token = localStorage.getItem('access_token');
 
-                const response = await fetch(`http://localhost:8000/api/recommender/${requestId}`, {
+                const response = await fetch(`https://smart-reqs-backend-latest.onrender.com/api/recommender/${requestId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`

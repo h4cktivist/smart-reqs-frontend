@@ -9,7 +9,7 @@ document.querySelector('.login-btn').addEventListener('click', async function() 
     }
 
     try {
-        const response = await fetch('http://localhost:8000/api/auth/login', {
+        const response = await fetch('https://smart-reqs-backend-latest.onrender.com/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ document.querySelector('.login-btn').addEventListener('click', async function() 
 
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('token_expires', Date.now() + data.expires_in * 60000);
-        fetch('http://localhost:8000/api/auth/me', {
+        fetch('https://smart-reqs-backend-latest.onrender.com/api/auth/me', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${data.access_token}`

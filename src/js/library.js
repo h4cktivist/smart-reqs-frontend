@@ -19,7 +19,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 
     const token = localStorage.getItem('access_token');
     try {
-        const response = await fetch('http://localhost:8000/api/libraries', {
+        const response = await fetch('https://smart-reqs-backend-latest.onrender.com/api/libraries', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
