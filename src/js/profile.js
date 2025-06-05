@@ -77,7 +77,14 @@ function saveProfile(e) {
         formData.new_password = document.getElementById('newPassword').value;
     }
 
-    console.log(formData);
+    for (const key in formData) {
+        if (formData.hasOwnProperty(key)) {
+            if (!formData[key] || formData[key].trim() === '') {
+                alert('Поля не должны быть пустыми!');
+                return;
+            }
+        }
+    }
 
     saveBtn.disabled = true;
     saveBtn.textContent = 'Сохранение...';
