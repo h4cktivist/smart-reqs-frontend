@@ -43,7 +43,15 @@ function createHistoryItem(item) {
     const requestContent = `Название: ${item.request.title || 'Не указано'}\n\n` +
         `Описание идеи: ${item.request.idea_description || 'Не указано'}\n\n` +
         `Функциональные требования: ${item.request.functional_reqs || 'Не указано'}\n\n` +
-        `Тип продукта: ${item.request.product_type || 'Не указано'}`;
+        `Тип продукта: ${item.request.product_type || 'Не указано'}\n\n` +
+        `Необходмость БД: ${item.request.db_needed ? 'Да' : 'Нет'}\n\n` +
+        `Стуктура данных: ${item.request.data_structure || 'Не указано'}\n\n` +
+        `Работа с big data: ${item.request.big_data_needed ? 'Да' : 'Нет'}\n\n` +
+        `Анализ данных: ${item.request.data_analysis_needed ? 'Да' : 'Нет'}\n\n` +
+        `Машинное обучение: ${item.request.ml_needed ? 'Да' : 'Нет'}\n\n` +
+        `Необходимость масштабирования: ${item.request.scaling_needed ? 'Да' : 'Нет'}\n\n` +
+        `Автоматическое тестирование: ${item.request.autotesting_needed ? 'Да' : 'Нет'}\n\n` +
+        `Предпочтения по ЯП: ${item.request.languages_preferences || 'Не указано'}`;
 
     let resultContent = '';
     if (item.result) {

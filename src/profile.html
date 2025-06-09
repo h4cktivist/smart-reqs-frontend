@@ -49,14 +49,22 @@
         <label class="label">Новый пароль</label>
         <div class="input-wrapper">
           <input type="password" class="input" id="newPassword" placeholder="Введите новый пароль">
-          <img src="assets/icons/pencil.svg" class="edit-icon" alt="Редактировать">
+        </div>
+      </div>
+
+      <div id="newPasswordRepeatField" class="field hidden">
+        <label class="label">Повторите новый пароль</label>
+        <div class="input-wrapper">
+          <input type="password" class="input" id="newPasswordRepeat" placeholder="Повторите новый пароль">
         </div>
       </div>
 
       <button type="submit" id="saveBtn" class="hidden save-button">Сохранить</button>
     </form>
 
-    <button class="logout-btn">Выйти</button>
+    <button class="logout-btn">Выйти из аккаунта</button>
+
+    <button class="index-btn">На главную</button>
   </div>
 
   <script src="js/profile.js"></script>

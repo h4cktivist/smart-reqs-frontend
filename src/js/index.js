@@ -89,7 +89,7 @@ document.querySelector('.submit-btn').addEventListener('click', async function()
             throw new Error('Ваш запрос не соответствует ИТ-тематике');
         }
         else if (!response.ok) {
-            throw new Error(result.message || 'Ошибка сервера');
+            throw new Error('Произошла ошибка сервера. Проверьте правильность запроса');
         }
 
         sessionStorage.setItem('recommendation_result', JSON.stringify(result));

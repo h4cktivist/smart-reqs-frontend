@@ -38,13 +38,15 @@
       const errorElement = document.querySelector('.error-message');
       const registerBtn = document.getElementById('registerBtn');
 
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+
       if (password !== confirmPassword) {
         errorElement.textContent = 'Пароли не совпадают';
         return;
       }
 
-      if (password.length < 8) {
-        errorElement.textContent = 'Пароль должен содержать минимум 8 символов';
+      if (!passwordRegex.test(password)) {
+        errorElement.textContent = 'Пароль должен содержать не менее 8 символов, включая хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ.';
         return;
       }
 
@@ -67,8 +69,9 @@
 
         const registerData = await registerResponse.json();
 
-        if (!registerResponse.ok) {
-          throw new Error(registerData.message || 'Ошибка регистрации');
+        if (!registerResponse.ok && registerResponse.status === 400) {
+          errorElement.textContent = 'Пользователь с таким именем или email уже существует';
+          return;
         }
 
         const loginResponse = await fetch('https://smart-reqs-backend-latest.onrender.com/api/auth/login', {
@@ -92,7 +95,7 @@
         localStorage.setItem('token_expires', Date.now() + loginData.expires_in * 1000);
         localStorage.setItem('is_expert', false);
 
-        window.location.href = 'profile.html';
+        window.location.href = 'index.html';
 
       } catch (error) {
         errorElement.textContent = error.message;

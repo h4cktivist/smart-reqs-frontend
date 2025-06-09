@@ -78,6 +78,10 @@ button {
     margin-top: 5px;
 }
 
+.logout-btn {
+    background-color: #9e4654;
+}
+
 button:hover {
     background-color: #3A4856;
 }

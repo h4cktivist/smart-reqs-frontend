@@ -47,6 +47,7 @@ function enableEditing(field) {
 
     if (field === 'password') {
         document.getElementById('newPasswordField').classList.remove('hidden');
+        document.getElementById('newPasswordRepeatField').classList.remove('hidden');
         document.getElementById('password').value = '';
         document.getElementById('password').placeholder = 'Текущий пароль';
     }
@@ -73,8 +74,19 @@ function saveProfile(e) {
     }
 
     if (!document.getElementById('password').disabled) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+
         formData.current_password = document.getElementById('password').value;
         formData.new_password = document.getElementById('newPassword').value;
+        let repeatedPassword = document.getElementById('newPasswordRepeat').value;
+        if (!passwordRegex.test(formData.new_password)) {
+            alert('Пароль должен содержать не менее 8 символов, включая хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ.');
+            return;
+        }
+        if (formData.new_password !== repeatedPassword) {
+            alert('Новые пароли не совпадают!')
+            return;
+        }
     }
 
     for (const key in formData) {
@@ -126,4 +138,8 @@ document.querySelector('.logout-btn').addEventListener('click', function() {
     localStorage.removeItem('token_expires');
     localStorage.removeItem('is_expert');
     window.location.href = 'login.html';
+});
+
+document.querySelector('.index-btn').addEventListener('click', function() {
+    window.location.href = 'index.html';
 });
