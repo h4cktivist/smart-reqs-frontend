@@ -45,17 +45,42 @@ function enableEditing(field) {
     const input = document.getElementById(field);
     const saveBtn = document.getElementById('saveBtn');
 
-    if (field === 'password') {
-        document.getElementById('newPasswordField').classList.remove('hidden');
-        document.getElementById('newPasswordRepeatField').classList.remove('hidden');
-        document.getElementById('password').value = '';
-        document.getElementById('password').placeholder = 'Текущий пароль';
-    }
-
     input.disabled = false;
     saveBtn.classList.remove('hidden');
 
     input.focus();
+
+    if (field === 'password') {
+        let editIcon = document.getElementById('password-edit');
+        editIcon.style.display = 'none';
+        let oldPasswordEye = document.getElementById('old-password-eye');
+        oldPasswordEye.style.display = 'block';
+        document.getElementById('newPasswordField').classList.remove('hidden');
+        document.getElementById('newPasswordRepeatField').classList.remove('hidden');
+        document.getElementById('password').value = '';
+        document.getElementById('password').placeholder = 'Текущий пароль';
+
+        document.getElementById('old-password-eye').addEventListener('click', function() {
+            if (document.getElementById('password').type === 'password')
+                document.getElementById('password').type = 'text';
+            else
+                document.getElementById('password').type = 'password';
+        });
+
+        document.getElementById('password-eye').addEventListener('click', function() {
+            if (document.getElementById('newPassword').type === 'password')
+                document.getElementById('newPassword').type = 'text';
+            else
+                document.getElementById('newPassword').type = 'password';
+        });
+
+        document.getElementById('password-repeat-eye').addEventListener('click', function() {
+            if (document.getElementById('newPasswordRepeat').type === 'password')
+                document.getElementById('newPasswordRepeat').type = 'text';
+            else
+                document.getElementById('newPasswordRepeat').type = 'password';
+        });
+    }
 }
 
 function saveProfile(e) {

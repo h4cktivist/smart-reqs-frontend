@@ -41,7 +41,8 @@
         <label class="label">Пароль</label>
         <div class="input-wrapper">
           <input type="password" class="input" id="password" value="*******" disabled>
-          <img src="assets/icons/pencil.svg" class="edit-icon" data-field="password" alt="Редактировать">
+          <img src="assets/icons/pencil.svg" id="password-edit" class="edit-icon" data-field="password" alt="Редактировать">
+          <img src="assets/icons/eye.png" id="old-password-eye" class="edit-icon" alt="Посмотреть" style="display: none;">
         </div>
       </div>
 
@@ -49,6 +50,7 @@
         <label class="label">Новый пароль</label>
         <div class="input-wrapper">
           <input type="password" class="input" id="newPassword" placeholder="Введите новый пароль">
+          <img src="assets/icons/eye.png" id="password-eye" class="edit-icon" alt="Посмотреть">
         </div>
       </div>
 
@@ -56,6 +58,7 @@
         <label class="label">Повторите новый пароль</label>
         <div class="input-wrapper">
           <input type="password" class="input" id="newPasswordRepeat" placeholder="Повторите новый пароль">
+          <img src="assets/icons/eye.png" id="password-repeat-eye" class="edit-icon" alt="Посмотреть">
         </div>
       </div>
 

@@ -22,8 +22,8 @@ document.querySelector('.login-btn').addEventListener('click', async function() 
 
         const data = await response.json();
 
-        if (!response.ok) {
-            throw new Error(data.message || 'Ошибка авторизации');
+        if (response.status === 401) {
+            throw new Error('Неверный email или пароль');
         }
 
         localStorage.setItem('access_token', data.access_token);
