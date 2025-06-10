@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 891px;
-    min-height: 1505px;
+    min-height: 200px;
     margin: 0 auto;
     background-color: #F2F5F0;
     border-radius: 90px;

@@ -1,0 +1,52 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данные о технологии</title>
+    <script src="js/login_check.js"></script>
+    <script src="js/expert_check.js"></script>
+    <link rel="stylesheet" href="css/add_select.css"/>
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #A5BB89;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #799160;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-logo">
+        <img src="assets/icons/icon.svg" alt="На главную" title="Вернуться на главную">
+    </a>
+
+    <div class="tech-card">
+        <div class="card-title">Панель эксперта</div>
+
+        <div class="button-container">
+            <a href="add_select.html" class="btn">Добавить технологии</a>
+            <a href="unanswered.html" class="btn">Запросы без ответа</a>
+        </div>
+
+    </div>
+</body>
+</html>

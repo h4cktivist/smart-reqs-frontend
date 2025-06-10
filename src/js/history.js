@@ -34,6 +34,17 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Ошибка:', error);
         historyContainer.innerHTML = `<div class="error">Ошибка загрузки истории: ${error.message}</div>`;
     }
+
+    const is_expert = localStorage.getItem('is_expert');
+    const icons = document.getElementById('top-icons');
+    if (is_expert === 'true') {
+        const link = document.createElement('a');
+        link.href = 'expert_menu.html';
+        const img = document.createElement('img');
+        img.src = 'assets/icons/icons8-expert-100.png';
+        link.appendChild(img);
+        icons.appendChild(link);
+    }
 });
 
 function createHistoryItem(item) {

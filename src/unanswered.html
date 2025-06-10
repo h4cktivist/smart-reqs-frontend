@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История запросов</title>
+    <link rel="stylesheet" href="css/history.css" />
+    <script src="js/login_check.js"></script>
+    <script src="js/expert_check.js"></script>
+    <style>
+        input {
+            flex: 1;
+            height: 32px;
+            width: 95%;
+            border-radius: 20px;
+            background-color: #BDC3C7;
+            border: none;
+            padding: 0 12px;
+            margin: 5px;
+        }
+
+        button {
+            background-color: #4B5B69;
+            color: white;
+            border: none;
+            padding: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<a href="index.html" class="home-logo">
+    <img src="assets/icons/icon.svg" alt="На главную" title="Вернуться на главную">
+</a>
+
+<div class="top-icons" id="top-icons">
+    <a href="history.html"><img src="assets/icons/history.svg" alt="icon1"></a>
+    <a href="profile.html"><img src="assets/icons/user.svg" alt="icon2"></a>
+</div>
+
+<div class="container">
+    <div class="history-title">Запросы без ответа</div>
+    <div id="historyContainer"></div>
+</div>
+
+<script src="js/unanswered.js"></script>
+</body>
+</html>

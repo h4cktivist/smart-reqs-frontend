@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const icons = document.getElementById('top-icons');
     if (is_expert === 'true') {
         const link = document.createElement('a');
-        link.href = 'add_select.html';
+        link.href = 'expert_menu.html';
         const img = document.createElement('img');
         img.src = 'assets/icons/icons8-expert-100.png';
         link.appendChild(img);
